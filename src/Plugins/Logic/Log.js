@@ -5,16 +5,18 @@
  */
 import {PLATFORM_ENV_PRODUCT} from '../../Config/PMEngineConfig';
 
-export const dumpLine = (message) => {
+export const dumpLine = () => {
   if (window['LUFFY_ENGINE_ENV']['PLATFORM_ENV'] === PLATFORM_ENV_PRODUCT) {
     return;
   }
-  console.info(message)
+  let args = Array.prototype.slice.call(arguments);
+  args.unshift(`[Paymini] `);
+  console.log.apply(console, args);
 };
 
 export const dumpStack = (message) => {
   if (window['LUFFY_ENGINE_ENV']['PLATFORM_ENV'] === PLATFORM_ENV_PRODUCT) {
     return;
   }
-  console.trace(message);
+  console.trace(`[Paymini] ${message}`);
 };
